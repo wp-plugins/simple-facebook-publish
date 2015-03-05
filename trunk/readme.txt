@@ -27,7 +27,7 @@ To create a facebook app go to: https://developers.facebook.com/apps
 
 Also you have to generate a permanent page access token. Click the following link for a tutorial on how to get one: http://stackoverflow.com/questions/17197970/facebook-permanent-page-access-token
 
-After installing the plugin got to "Settings" > "Simple Facebook Publish" and enter your app id, app secret and the access token.
+After installing the plugin go to "Settings" > "Simple Facebook Publish" and enter your app id, app secret and the access token.
 Now on the post edit screen you will see an additional meta box with a checkbox. Check this checkbox before saving/updating a post to publish it on facebook.
 
 **ATTENTION:** Your server needs to run php 5.4 or later!
