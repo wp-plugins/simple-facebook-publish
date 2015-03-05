@@ -23,6 +23,8 @@ You need a facebook app with the following permissions, reviewed by facebook:
 - manage_pages
 - publish_actions
 
+To create a facebook app go to: https://developers.facebook.com/apps
+
 Also you have to generate a permanent page access token. Click the following link for a tutorial on how to get one: http://stackoverflow.com/questions/17197970/facebook-permanent-page-access-token
 
 After installing the plugin got to "Settings" > "Simple Facebook Publish" and enter your app id, app secret and the access token.
