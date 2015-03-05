@@ -1,6 +1,5 @@
 === Simple Facebook Publish ===
 Contributors: mktatwp
-Tags: facebook, publish, post
 Requires at least: 3.0.1
 Tested up to: 4.1.1
 Stable tag: 1.0
