@@ -1,11 +1,11 @@
 === Simple Facebook Publish ===
 Contributors: mktatwp
+Tags: simple, facebook, publish, post
 Requires at least: 3.0.1
 Tested up to: 4.1.1
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: simple, facebook, publish, post
 
 This is a very simple plugin for publishing your wordpress posts to facebook.
 
