@@ -8,10 +8,16 @@ Text Domain: simple-facebook-publish
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-require_once 'simpleFacebookPublishMetaBox.php';
-require_once 'simpleFacebookPublishSettings.php';
+session_start();
 
-$simpleFacebookPublishMetaBox = new SimpleFacebookPublishMetaBox();
+use SimpleFacebookPublish\SimpleFacebookPublish;
+
+// only run in admin section
 if (is_admin()) {
-    $simpleFacebookPublishSettings = new SimpleFacebookPublishSettings();
+    require_once __DIR__ . '/facebook-php-sdk-v4-4.0-dev/autoload.php';
+    require_once __DIR__ . '/SimpleFacebookPublish.php';
+    require_once __DIR__ . '/MetaBox.php';
+    require_once __DIR__ . '/Settings.php';
+
+    $simpleFacebookPublish = new SimpleFacebookPublish();
 }

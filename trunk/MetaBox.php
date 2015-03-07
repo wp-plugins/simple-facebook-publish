@@ -1,25 +1,27 @@
 <?php
 
-require_once __DIR__ . '/facebook-php-sdk-v4-4.0-dev/autoload.php';
+namespace SimpleFacebookPublish;
 
+use Exception;
 use Facebook\FacebookRequest;
-use Facebook\FacebookRequestException;
 use Facebook\FacebookSession;
 
-class SimpleFacebookPublishMetaBox
+class MetaBox
 {
-    private $fbSession;
+    private $options;
+    private $facebookSession;
     private $fbError;
     private $fbPostUrl;
 
-    public function __construct()
+    public function __construct($options, $facebookSession)
     {
-        $options = get_option('simple-facebook-publish-option');
+        $this->options = $options;
+        $this->facebookSession= $facebookSession;
 
         try {
-            FacebookSession::setDefaultApplication($options['app_id'], $options['app_secret']);
-            $this->fbSession = new FacebookSession($options['access_token']);
-            $this->fbSession->validate();
+            if ($this->facebookSession) {
+                $this->facebookSession->validate();
+            }
             add_action('add_meta_boxes', array($this, 'addMetaBox'));
             add_action('save_post', array($this, 'saveMetaBox'));
         } catch (Exception $e) {
@@ -117,22 +119,24 @@ class SimpleFacebookPublishMetaBox
     public function post($data)
     {
         try {
-            $response = (new FacebookRequest(
-                $this->fbSession, 'POST', '/me/feed', array(
-                    'link' => $data['link'],
-                    'message' => $data['message'],
-                    'picture' => $data['picture'],
-                    'name' => $data['name'],
-                    'description' => $data['description'],
-                    'caption' => $data['caption']
-                )
-            ))->execute()->getGraphObject();
+            $session = new FacebookSession($this->options['access_token']);
+            if ($session) {
+                $response = (new FacebookRequest(
+                    $session, 'POST', '/me/feed', array(
+                        'link' => $data['link'],
+                        'message' => $data['message'],
+                        'picture' => $data['picture'],
+                        'name' => $data['name'],
+                        'description' => $data['description'],
+                        'caption' => $data['caption']
+                    )
+                ))->execute()->getGraphObject();
 
-            $this->fbPostUrl = 'https://facebook.com/' . $response->getProperty('id');
+                $this->fbPostUrl = 'https://facebook.com/' . $response->getProperty('id');
 
-            add_filter('redirect_post_location', array($this, 'adminPublishedNoticeQueryVar'), 99);
-
-        } catch (FacebookRequestException $e) {
+                add_filter('redirect_post_location', array($this, 'adminPublishedNoticeQueryVar'), 99);
+            }
+        } catch (Exception $e) {
             echo "Exception occured, code: " . $e->getCode();
             echo " with message: " . $e->getMessage();
         }
