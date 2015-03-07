@@ -17,11 +17,17 @@ class SimpleFacebookPublish
 
     public function __construct()
     {
+        add_action('plugins_loaded', array($this, 'loadTextdomain'));
         $this->options = get_option('simple-facebook-publish-option');
         $this->authorize();
+
         $this->metaBox = new MetaBox($this->options, $this->facebookSession);
         $this->settings = new Settings($this->options, $this->facebookSession, $this->redirectLoginHelper);
+    }
 
+    public function loadTextdomain()
+    {
+        load_plugin_textdomain('simple-facebook-publish', false, plugin_basename(dirname(__FILE__)) . '/languages');
     }
 
     public function authorize()
@@ -35,9 +41,9 @@ class SimpleFacebookPublish
                 // Use the login url on a link or button to redirect to Facebook for authentication
                 try {
                     $this->facebookSession = $this->redirectLoginHelper->getSessionFromRedirect();
-                } catch(FacebookRequestException $e) {
+                } catch (FacebookRequestException $e) {
                     // When Facebook returns an error
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     // When validation fails or other local issues
                 }
             }

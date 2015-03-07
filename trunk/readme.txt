@@ -3,9 +3,10 @@ Contributors: mktatwp
 Tags: simple, easy, automated, facebook, post, publish
 Requires at least: 3.0.1
 Tested up to: 4.1.1
-Stable tag: 1.1
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: simple-facebook-publish
 
 This is a very simple plugin for publishing your wordpress posts to facebook.
 
@@ -37,8 +38,9 @@ No questions asked yet. Feel free... ;)
 
 == Changelog ==
 
-1.1
+0.2
 
+- added language support
 - Access token now gets generated automatically!
 
 Initial commit. No changes yet.

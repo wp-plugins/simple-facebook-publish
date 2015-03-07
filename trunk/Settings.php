@@ -143,7 +143,7 @@ class Settings
      */
     public function printSectionInfo()
     {
-        echo 'Enter your app details below, click on "Authorize this App" and choose a page to publish your posts on. Save your changes and you\'re ready to publish.<br><br>';
+        echo __("Enter your app details below, click on Authorize this App and choose a page to publish your posts on. Save your changes and you are ready to publish.", 'simple-facebook-publish') . '<br><br>';
     }
 
     /**
