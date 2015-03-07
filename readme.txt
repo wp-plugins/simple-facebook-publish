@@ -6,7 +6,6 @@ Tested up to: 4.1.1
 Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: simple-facebook-publish
 
 This is a very simple plugin for publishing your wordpress posts to facebook.
 
