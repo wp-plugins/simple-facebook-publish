@@ -143,7 +143,8 @@ class Settings
      */
     public function printSectionInfo()
     {
-        echo __("Enter your app details below, click on Authorize this App and choose a page to publish your posts on. Save your changes and you are ready to publish.", 'simple-facebook-publish') . '<br><br>';
+        echo __("Enter your app details below, click on Authorize this App and choose a page to publish your posts on. Save your changes and you are ready to publish.", 'simple-facebook-publish') . '<br>';
+        echo __('To create a facebook app go to: <a href="https://developers.facebook.com/apps" target="_blank">https://developers.facebook.com/apps</a>', 'simple-facebook-publish') . '<br><br>';
     }
 
     /**
