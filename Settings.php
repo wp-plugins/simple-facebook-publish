@@ -162,7 +162,7 @@ class Settings
      */
     public function printAppSectionInfo()
     {
-        echo __("Enter your app details below, click on Authorize this App and choose a page to publish your posts on. Save your changes and you are ready to publish.", 'simple-facebook-publish') . '<br><br>';
+        echo __('Enter your app details below, click on Authorize this App and choose a page to publish your posts on. Save your changes and you are ready to publish.', 'simple-facebook-publish') . '<br><br>';
         echo __('To create a facebook app go to: <a href="https://developers.facebook.com/apps" target="_blank">https://developers.facebook.com/apps</a>', 'simple-facebook-publish') . '<br>';
         echo __('After creating the app go to its settings page, enter your website domain in the App Domains field and click on Add Plattform > Website to enter your domain again as Site URL and Mobile Site URL. Now your app is ready to be used with this plugin.', 'simple-facebook-publish');
         echo '<br>';
@@ -173,7 +173,7 @@ class Settings
      */
     public function printPostTypesSectionInfo()
     {
-        echo __("Choose the post types you want to publish on facebook.", 'simple-facebook-publish');
+        echo __('Choose the post types you want to publish on facebook.', 'simple-facebook-publish');
     }
 
     /**
