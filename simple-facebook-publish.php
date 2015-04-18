@@ -3,7 +3,7 @@
 Plugin Name: Simple Facebook Publish
 Description: Most simple implementation of automated facebook posts.
 Author: Markus Kottländer
-Version: 0.2
+Version: 0.3
 Text Domain: simple-facebook-publish
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
