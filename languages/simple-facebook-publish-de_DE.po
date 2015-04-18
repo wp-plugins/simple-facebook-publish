@@ -1,0 +1,137 @@
+# Copyright (C) 2015 Simple Facebook Publish
+# This file is distributed under the same license as the Simple Facebook Publish package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Facebook Publish 0.3\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/simple-facebook-"
+"publish\n"
+"POT-Creation-Date: 2015-04-18 15:17:26+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-04-18 18:56+0100\n"
+"Last-Translator: Markus Kottländer <m.kottlaender@kabelmail.de>\n"
+"Language-Team: Markus Kottländer <kontakt@markus-kottlaender.de>\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: DE\n"
+
+#: MetaBox.php:43 MetaBox.php:51
+msgid "Publish on Facebook"
+msgstr "Auf Facebook veröffentlichen"
+
+#: MetaBox.php:73
+msgid "Publish this post on Facebook"
+msgstr "Veröffentliche diesen Post auf Facebook"
+
+#: MetaBox.php:176
+msgid "An error occured!"
+msgstr "Ein Fehler ist aufgetreten!"
+
+#: MetaBox.php:179
+msgid ""
+"Please validate your <a href=\"options-general.php?page=simple-facebook-"
+"publish-settings-page\">settings</a>"
+msgstr ""
+"Bitte überprüfe deine <a href=\"options-general.php?page=simple-facebook-"
+"publish-settings-page\">Einstellungen</a>"
+
+#: MetaBox.php:196
+msgid "Successfully posted on Facebook!"
+msgstr "Erfolgreich auf Facebook veröffentlicht!"
+
+#: MetaBox.php:197
+msgid "View post"
+msgstr "Post anzeigen"
+
+#: MetaBox.php:209
+msgid "Error: No Access Token!"
+msgstr "Fehler: Kein Access Token vorhanden!"
+
+#: MetaBox.php:211
+msgid ""
+"There was no access token available to post to facebook. Go to the <a href="
+"\"http://wordpress.local/wp-admin/options-general.php?page=simple-facebook-"
+"publish-settings-page\">settings screen</a> and authorize your facebook apo "
+"to generate an access token."
+msgstr ""
+"Es ist leider kein Acces Token vorhanden um auf Facebook zu posten. Gehe zur "
+"<a href=\"http://wordpress.local/wp-admin/options-general.php?page=simple-"
+"facebook-publish-settings-page\">Einstellungs Seite</a> und authorisiere die "
+"Facebook App um ein Access Token zu generieren."
+
+#: Settings.php:35
+msgid "Simple Facebook Publish Settings"
+msgstr "Simple Facebook Publish Einstellungen"
+
+#. #-#-#-#-#  plugin.pot (Simple Facebook Publish 0.3)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: Settings.php:36
+msgid "Simple Facebook Publish"
+msgstr "Simple Facebook Publish"
+
+#: Settings.php:77
+msgid "Facebook App"
+msgstr "Facebook App"
+
+#: Settings.php:108
+msgid "Post Types"
+msgstr "Inhaltstypen"
+
+#: Settings.php:165
+msgid ""
+"Enter your app details below, click on Authorize this App and choose a page "
+"to publish your posts on. Save your changes and you are ready to publish."
+msgstr ""
+"Gib deine App Informationen unten an, klicke auf 'App authorisieren' und "
+"wähle eine Facebook Seite, auf der du deine Posts veröffentlichen möchtest. "
+"Speichere deine Änderungen und beginne Posts zu veröffentlichen."
+
+#: Settings.php:166
+msgid ""
+"To create a facebook app go to: <a href=\"https://developers.facebook.com/"
+"apps\" target=\"_blank\">https://developers.facebook.com/apps</a>"
+msgstr ""
+"Um eine Facebook App zu erstellen gehe auf: <a href=\"https://developers."
+"facebook.com/apps\" target=\"_blank\">https://developers.facebook.com/apps</"
+"a>"
+
+#: Settings.php:167
+msgid ""
+"After creating the app go to its settings page, enter your website domain in "
+"the App Domains field and click on Add Plattform > Website to enter your "
+"domain again as Site URL and Mobile Site URL. Now your app is ready to be "
+"used with this plugin."
+msgstr ""
+"Nach dem Anlegen der App gehe zu den Einstellungen der App und gib die "
+"Domain deiner Website in das App Domains Feld ein und klicke auf Add "
+"Plattform > Website. Gib erneut deine Website bei Site URL und Mobile Site "
+"URL ein und klicke auf Save Changes. Deine App ist nun bereit."
+
+#: Settings.php:176
+msgid "Choose the post types you want to publish on facebook."
+msgstr ""
+"Wähle aus welche Inhaltstypen du auf Facebook veröffentlichen möchtest."
+
+#: Settings.php:209
+msgid "Profile"
+msgstr "Profil"
+
+#: Settings.php:228
+msgid "change"
+msgstr "ändern"
+
+#: Settings.php:231
+msgid "authorize app"
+msgstr "App authorisieren"
+
+#: Settings.php:235
+msgid "First save your app id an secret."
+msgstr "Speichere zuerste deine App ID und dein App Secret"
+
+#. Description of the plugin/theme
+msgid "Most simple implementation of automated facebook posts."
+msgstr "Einfachste Umsetzung automatischer Facebook Posts."
+
+#. Author of the plugin/theme
+msgid "Markus Kottländer"
+msgstr "Markus Kottländer"
