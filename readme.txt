@@ -3,7 +3,7 @@ Contributors: mktatwp
 Tags: simple, easy, automated, facebook, post, publish
 Requires at least: 3.0.1
 Tested up to: 4.1.1
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +11,7 @@ This is a very simple plugin for publishing your wordpress posts to facebook.
 
 == Description ==
 
-This plugin is maybe the most simple implementation of a facebook publishing functionality out there. All it does is adding a checkbox to the post edit screen.
+This plugin is maybe the most simple implementation of a facebook publishing functionality out there. All it does is adding a checkbox to the edit screen of the post types you wish.
 Checking this checkbox will convert your wordpress post into a facebook post which is automatically published on saving/updating the post.
 
 The plugin makes use of the latest facebook api version (PHP SDK 4.4.0).
@@ -37,12 +37,19 @@ No questions asked yet. Feel free... ;)
 
 == Changelog ==
 
+0.3
+
+- added support for multiple post types
+- fixed some bugs
+
 0.2
 
 - added language support
 - Access token now gets generated automatically!
 
-Initial commit. No changes yet.
+0.1
+
+- quick and dirty version for own purpose
 
 == Screenshots ==
 

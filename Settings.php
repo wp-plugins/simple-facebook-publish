@@ -73,9 +73,9 @@ class Settings
         );
 
         add_settings_section(
-            'simple_facebook_publish', // ID
+            'simple_facebook_publish_app', // ID
             __('Facebook App', 'simple-facebook-publish'), // Title
-            array($this, 'printSectionInfo'), // Callback
+            array($this, 'printAppSectionInfo'), // Callback
             'simple-facebook-publish-settings-page' // Page
         );
 
@@ -84,7 +84,7 @@ class Settings
             'App ID', // Title
             array($this, 'appIdCallback'), // Callback
             'simple-facebook-publish-settings-page', // Page
-            'simple_facebook_publish' // Section
+            'simple_facebook_publish_app' // Section
         );
 
         add_settings_field(
@@ -92,7 +92,7 @@ class Settings
             'App Secret',
             array($this, 'appSecretCallback'),
             'simple-facebook-publish-settings-page',
-            'simple_facebook_publish'
+            'simple_facebook_publish_app'
         );
 
         add_settings_field(
@@ -100,7 +100,22 @@ class Settings
             'Page',
             array($this, 'accessTokenCallback'),
             'simple-facebook-publish-settings-page',
-            'simple_facebook_publish'
+            'simple_facebook_publish_app'
+        );
+
+        add_settings_section(
+            'simple_facebook_publish_post_types', // ID
+            __('Post Types', 'simple-facebook-publish'), // Title
+            array($this, 'printPostTypesSectionInfo'), // Callback
+            'simple-facebook-publish-settings-page' // Page
+        );
+
+        add_settings_field(
+            'post_types',
+            'Available post types',
+            array($this, 'postTypesCallback'),
+            'simple-facebook-publish-settings-page',
+            'simple_facebook_publish_post_types'
         );
     }
 
@@ -135,18 +150,30 @@ class Settings
             $new_input['access_token'] = $permanentAccessTokenRequest['access_token'];
         }
 
+        if (isset($input['post_types'])) {
+            $new_input['post_types'] = $input['post_types'];
+        }
+
         return $new_input;
     }
 
     /**
      * Print the Section text
      */
-    public function printSectionInfo()
+    public function printAppSectionInfo()
     {
         echo __("Enter your app details below, click on Authorize this App and choose a page to publish your posts on. Save your changes and you are ready to publish.", 'simple-facebook-publish') . '<br><br>';
         echo __('To create a facebook app go to: <a href="https://developers.facebook.com/apps" target="_blank">https://developers.facebook.com/apps</a>', 'simple-facebook-publish') . '<br>';
         echo __('After creating the app go to its settings page, enter your website domain in the App Domains field and click on Add Plattform > Website to enter your domain again as Site URL and Mobile Site URL. Now your app is ready to be used with this plugin.', 'simple-facebook-publish');
         echo '<br>';
+    }
+
+    /**
+     * Print the Section text
+     */
+    public function printPostTypesSectionInfo()
+    {
+        echo __("Choose the post types you want to publish on facebook.", 'simple-facebook-publish');
     }
 
     /**
@@ -181,7 +208,7 @@ class Settings
             echo '<select name="simple-facebook-publish-option[access_token]">';
             echo '<option value="' . $this->facebookSession->getAccessToken() . '">' . __('Profile', 'simple-facebook-publish') . '</option>';
             foreach ($accounts['data'] as $account) {
-                echo '<option value="' . $account->access_token . '" />' , $account->name . '</option>';
+                echo '<option value="' . $account->access_token . '" />', $account->name . '</option>';
             }
             echo '</select>';
         } else {
@@ -199,6 +226,7 @@ class Settings
 
                     echo $page['name'] . '<br>';
                     echo '<a href="' . $loginUrl . '" class="button button-default">' . __('change', 'simple-facebook-publish') . '</a>';
+                    echo '<input type="hidden" name="simple-facebook-publish-option[access_token]" value="' . $this->options['access_token'] . '" />';
                 } else {
                     echo '<a href="' . $loginUrl . '" class="button button-default">' . __('authorize app', 'simple-facebook-publish') . '</a>';
                 }
@@ -206,6 +234,28 @@ class Settings
             } else {
                 echo __('First save your app id an secret.', 'simple-facebook-publish');
             }
+        }
+    }
+
+    public function postTypesCallback()
+    {
+        $postTypes = $post_types = get_post_types( '', 'names' );
+
+        foreach ($postTypes as $postType) {
+            if (in_array($postType, array('revision', 'nav_menu_item', 'attachment'))) continue;
+            $postType = get_post_type_object($postType);
+            // type "post" checked by default when no options were set before
+            $checked = (
+                (
+                    (!is_array($this->options) || !array_key_exists('post_types', $this->options))
+                    && $postType->name == 'post'
+                )
+                ||
+                (is_array($this->options) && in_array($postType->name, $this->options['post_types']))
+            ) ? 'checked="checked"' : '';
+            echo '<label>';
+            echo '<input type="checkbox" value="' . $postType->name . '" name="simple-facebook-publish-option[post_types][]" ' . $checked . '/>', $postType->labels->name;
+            echo '</label><br>';
         }
     }
 }

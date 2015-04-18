@@ -37,7 +37,15 @@ class MetaBox
      */
     public function addMetaBox($post_type)
     {
-        if ($post_type == 'post') {
+        if (is_array($this->options) && array_key_exists('post_types', $this->options) && in_array($post_type, $this->options['post_types'])) {
+            add_meta_box(
+                'simple_facebook_publish_meta_box',
+                __('Publish on Facebook', 'simple-facebook-publish'),
+                array($this, 'renderMetaBoxContent'),
+                $post_type,
+                'side'
+            );
+        } elseif ($post_type == 'post') {
             add_meta_box(
                 'simple_facebook_publish_meta_box',
                 __('Publish on Facebook', 'simple-facebook-publish'),
@@ -102,6 +110,7 @@ class MetaBox
             $data['description'] = get_the_date('d.m.Y', $post_id);
             $data['caption'] = str_replace(array('http://', 'https://'), '', site_url());
 
+            $data['picture'] = '';
             $thumbnail_id = get_post_thumbnail_id($post_id);
             if ($thumbnail_id) {
                 $thumbnail = wp_get_attachment_image_src($thumbnail_id, 'large');
@@ -119,6 +128,9 @@ class MetaBox
     public function post($data)
     {
         try {
+            if (!array_key_exists('access_token', $this->options)) {
+                throw new Exception('No Acces Token available. Go to the Settings page and authorize you facebook app generate one.');
+            }
             $session = new FacebookSession($this->options['access_token']);
             if ($session) {
                 $response = (new FacebookRequest(
@@ -137,8 +149,7 @@ class MetaBox
                 add_filter('redirect_post_location', array($this, 'adminPublishedNoticeQueryVar'), 99);
             }
         } catch (Exception $e) {
-            echo "Exception occured, code: " . $e->getCode();
-            echo " with message: " . $e->getMessage();
+            add_filter('redirect_post_location', array($this, 'adminNoAccessTokenQueryVar'), 99);
         }
     }
 
@@ -146,6 +157,12 @@ class MetaBox
     {
         remove_filter('redirect_post_location', array($this, 'adminPublishedNoticeQueryVar'), 99);
         return add_query_arg(array('simple-facebook-publish-published-url' => $this->fbPostUrl), $location);
+    }
+
+    public function adminNoAccessTokenQueryVar($location)
+    {
+        remove_filter('redirect_post_location', array($this, 'adminNoAccessTokenQueryVar'), 99);
+        return add_query_arg(array('simple-facebook-publish-no-access-token' => 1), $location);
     }
 
     public function adminErrorNotice()
@@ -178,6 +195,20 @@ class MetaBox
                     <?php
                     _e('Successfully posted on Facebook!', 'simple-facebook-publish');
                     echo ' <a href="' . $_GET['simple-facebook-publish-published-url'] . '" target="_blank">' . __('View post', 'simple-facebook-publish') . '</a>';
+                    ?>
+                </p>
+            </div>
+        <?php
+        }
+
+        if (isset($_GET['simple-facebook-publish-no-access-token'])) {
+            ?>
+            <div class="error">
+                <p>
+                    <?php
+                    echo '<b>' . __('Error: No Access Token!', 'simple-facebook-publish') . '</b>';
+                    echo '<br>';
+                    _e('There was no access token available to post to facebook. Go to the <a href="http://wordpress.local/wp-admin/options-general.php?page=simple-facebook-publish-settings-page">settings screen</a> and authorize your facebook apo to generate an access token.');
                     ?>
                 </p>
             </div>
